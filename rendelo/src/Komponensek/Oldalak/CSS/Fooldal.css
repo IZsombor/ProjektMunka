@@ -1,0 +1,109 @@
+.Fooldal {
+    text-align: center;
+    padding: 50px;
+    /* Hozzáadunk egy felső margót, hogy az elemek feljebb kerüljenek */
+    margin-top: -50px;
+}
+  
+.Elso {
+    font-size: 40px;
+    color: #333;
+    margin-bottom: 20px;
+
+}
+
+
+  
+.Masodik {
+    font-size: 18px;
+    color: #666;
+    font-weight: bold; 
+    margin-bottom: 40px;
+}
+
+.Masodik hr{
+    border: none;
+    width: 80%;
+    height: 3px;
+    border-radius: 10px;
+    background: #260de3;
+}
+  
+.Harmadik {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+  
+.Negyedik {
+    font-size: 18px; 
+    font-weight: bold; 
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.Negyedik hr {
+    border: none;
+    width: 80%;
+    height: 3px;
+    border-radius: 10px;
+    background: #260de3;
+}
+  
+.Otodik {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+  
+.Hatodik {
+    font-size: 18px; 
+    font-weight: bold; 
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.Hatodik hr{
+    border: none;
+    width: 80%;
+    height: 3px;
+    border-radius: 10px;
+    background: #260de3;
+}
+  
+.Hetedik {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+  
+.Nyolcadik {
+    font-size: 18px; 
+    font-weight: bold; 
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.Nyolcadik hr{
+    border: none;
+    width: 80%;
+    height: 3px;
+    border-radius: 10px;
+    background: #260de3;
+}
+
+.gomb1 {
+    border: none;
+    color: white;
+    background-color: transparent; /* Átlátszó háttér */
+    outline: none; /* Nincs keret */
+    font-weight: bold; /* Vastag betűtípus */
+}
+
+.gomb2{
+    border: none;
+    color: white;
+    background-color: transparent; /* Átlátszó háttér */
+    outline: none; /* Nincs keret */
+    font-weight: bold; /* Vastag betűtípus */
+}
