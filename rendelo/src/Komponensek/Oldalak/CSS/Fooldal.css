@@ -21,13 +21,7 @@
     margin-bottom: 40px;
 }
 
-.Masodik hr{
-    border: none;
-    width: 80%;
-    height: 3px;
-    border-radius: 10px;
-    background: #260de3;
-}
+
   
 .Harmadik {
     font-size: 24px;
@@ -42,13 +36,7 @@
     margin-bottom: 20px;
 }
 
-.Negyedik hr {
-    border: none;
-    width: 80%;
-    height: 3px;
-    border-radius: 10px;
-    background: #260de3;
-}
+
   
 .Otodik {
     font-size: 24px;
@@ -63,13 +51,7 @@
     margin-bottom: 20px;
 }
 
-.Hatodik hr{
-    border: none;
-    width: 80%;
-    height: 3px;
-    border-radius: 10px;
-    background: #260de3;
-}
+
   
 .Hetedik {
     font-size: 24px;
@@ -84,13 +66,7 @@
     margin-bottom: 20px;
 }
 
-.Nyolcadik hr{
-    border: none;
-    width: 80%;
-    height: 3px;
-    border-radius: 10px;
-    background: #260de3;
-}
+
 
 .gomb1 {
     border: none;
@@ -106,4 +82,12 @@
     background-color: transparent; /* Átlátszó háttér */
     outline: none; /* Nincs keret */
     font-weight: bold; /* Vastag betűtípus */
+}
+
+hr{
+    border: none;
+    width: 80%;
+    height: 3px;
+    border-radius: 10px;
+    background: #260de3;
 }

@@ -7,22 +7,12 @@ import email_icon from '../forrasok/email.png';
 import password_icon from '../forrasok/password.png';
 
 const Signup = () => {
-  const [nev, setNev] = useState("");
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [jelszo, setJelszo] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [age, setAge] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
-  const [nevError, setNevError] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [jelszoError, setJelszoError] = useState("");
-  
-  const [token, setToken] = useState('');
-
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  //Email cím: zsombor@gmail.com
-  const nevRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
-  //Nev: zsombor
-  const jelszoRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
-  //Jelszo: A1!rK8-2
 
   const ref = useRef(null);
 
@@ -40,45 +30,19 @@ const Signup = () => {
   };
 
   const handleSignUp = async () => {
-    let isValid = true;
-  
-    if (!nevRegex.test(nev)) {
-      setNevError("A név nem megfelelő karaktereket tartalmaz!");
-      isValid = false;
-    } else {
-      setNevError("");
-    }
-  
-    if (!emailRegex.test(email)) {
-      setEmailError("Az email-cím nem megfelelő karaktereket tartalmaz!");
-      isValid = false;
-    } else {
-      setEmailError("");
-    }
-  
-    if (!jelszoRegex.test(jelszo)) {
-      setJelszoError("A jelszó nem megfelelő karaktereket tartalmaz!");
-      isValid = false;
-    } else {
-      setJelszoError("");
-    }
-  
-    if (isValid) {
-      try {
-        const response = await axios.post('', { nev, email, jelszo }, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        setToken(response.data.token);
-       
-        console.log(response.data);
-      
-        localStorage.setItem('user', nev);
-        localStorage.setItem('email', email);
-        localStorage.setItem('pwd', jelszo);
-      } catch (error) {
-        console.error('Regisztrációs hiba:', error);
+    try {
+      const response = await axios.post('https://localhost:7256/auth/register', { userName, password, email, fullName, age });
+      console.log(response);
+      alert("Sikeres regisztráció!"); // Ez az új sor, ami megjeleníti az alert-et.
+
+      // Az alábbi sorok tárolják az adatokat a localStorage-ban.
+      localStorage.setItem('user', userName);
+      localStorage.setItem('pwd', password);
+    
+    } catch (error) {
+   
+      if (error.response) {
+        console.error('Hiba válasz:', error.response);
       }
     }
   };
@@ -99,9 +63,15 @@ const Signup = () => {
           <div className='input-container'>
             <div className='input2'>
               <img src={user_icon} alt='' />
-              <input type='text' placeholder='Nev' value={nev} onChange={(e) => setNev(e.target.value)}/>
+              <input type='text' placeholder='Felhasználónév' value={userName} onChange={(e) => setUserName(e.target.value)}/>
             </div>
-            {nevError && <div className="error-popup">{nevError}</div>}
+          </div>
+          <br></br>
+          <div className='input-container'>
+            <div className='input2'>
+              <img src={password_icon} alt='' />
+              <input type='password' placeholder='Jelszó' value={password} onChange={(e) => setPassword(e.target.value)}/>
+            </div>
           </div>
           <br></br>
           <div className='input-container'>
@@ -109,17 +79,22 @@ const Signup = () => {
               <img src={email_icon} alt='' />
               <input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}/>
             </div>
-            {emailError && <div className="error-popup">{emailError}</div>}
           </div>
           <br></br>
           <div className='input-container'>
             <div className='input2'>
-              <img src={password_icon} alt='' />
-              <input type='password' placeholder='Jelszo' value={jelszo} onChange={(e) => setJelszo(e.target.value)}/>
+              <img src={user_icon} alt='' />
+              <input type='text' placeholder='Teljes név' value={fullName} onChange={(e) => setFullName(e.target.value)}/>
             </div>
-            {jelszoError && <div className="error-popup">{jelszoError}</div>}
           </div>
-          <div className='elfelejtett-jelszo2'>Elfelejtett jelszó? <span>Kattints ide!</span> </div>
+          <br></br>
+          <div className='input-container'>
+            <div className='input2'>
+              <img src={user_icon} alt='' />
+              <input type='number' placeholder='Kor' value={age} onChange={(e) => setAge(parseInt(e.target.value))}/>
+            </div>
+          </div>
+
           <div className='submit-container2'>
             <div className='submit2' onClick={handleSignUp}>Regisztráció</div>
           </div>

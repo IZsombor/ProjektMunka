@@ -2,20 +2,20 @@ import React, { useState, useEffect, useRef } from 'react';
 import './CSS/Login.css';
 import axios from 'axios';
 
-import email_icon from '../forrasok/email.png';
+import user_icon from '../forrasok/person.png';
 import password_icon from '../forrasok/password.png';
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [jelszo, setJelszo] = useState("");
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
   
   const [token, setToken] = useState('');
   
 
   const [isVisible, setIsVisible] = useState(true);
-  const [emailError, setEmailError] = useState("");
+ 
 
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  
 
   const ref = useRef(null);
 
@@ -33,24 +33,24 @@ const Login = () => {
   };
 
   const handleLogin = async() => {
-    if (!emailRegex.test(email)) {
-      setEmailError("Az e-mail cím nem megfelelő karaktereket tartalmaz!");
-    } else {
-      setEmailError("");
-    }
     try {
-      const response = await axios.post('', { email, jelszo }, {
+      const response = await axios.post('https://localhost:7256/auth/login', { userName, password }, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
       setToken(response.data.token);
      
-      if (localStorage.getItem('user') === email && localStorage.getItem('pwd') === jelszo) {
+      if (localStorage.getItem('user') === userName && localStorage.getItem('pwd') === password) {
         alert('Sikeres bejelentkezés!');
+      } else {
+        alert('Először regisztrálnod kell!');
       }
     } catch (error) {
       console.error('Bejelentkezési hiba:', error);
+      if (error.response) {
+        console.error('Hiba válasz:', error.response);
+      }
     }
   };
 
@@ -69,16 +69,16 @@ const Login = () => {
         <div className='inputs1'>
           <div className='input-container'>
             <div className='input1'>
-              <img src={email_icon} alt='' />
-              <input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}/>
+              <img src={user_icon} alt='' />
+              <input type='text' placeholder='Nev' value={userName} onChange={(e) => setUserName(e.target.value)}/>
             </div>
-            {emailError && <div className="error-popup">{emailError}</div>}
+           
           </div>
           <br></br>
           <div className='input-container'>
             <div className='input1'>
               <img src={password_icon} alt='' />
-              <input type='password' placeholder='Jelszo' value={jelszo} onChange={(e) => setJelszo(e.target.value)}/>
+              <input type='password' placeholder='Jelszo' value={password} onChange={(e) => setPassword(e.target.value)}/>
             </div>
           </div>
           <div className='elfelejtett-jelszo1'>Elfelejtett jelszó? <span>Kattints ide!</span> </div>
@@ -92,3 +92,4 @@ const Login = () => {
 }
 
 export default Login;
+
