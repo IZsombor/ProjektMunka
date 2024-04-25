@@ -1,0 +1,22 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Hamburger",
+            "price":1800 ,
+            "weight": 450 
+        },
+        {
+            "id": 2,
+            "name": "Pizza",
+            "price": 1900,
+            "weight": 345
+        },
+        {
+            "id": 3,
+            "name": "Sandwich",
+            "price": 850,
+            "weight": 300
+        }
+    ]
+}

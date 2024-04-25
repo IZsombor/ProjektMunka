@@ -32,7 +32,7 @@ const Signup = () => {
   const handleSignUp = async () => {
     try {
       const response = await axios.post('https://localhost:7256/auth/register', { userName, password, email, fullName, age });
-      console.log(response);
+      console.log(response.data);
       alert("Sikeres regisztráció!"); // Ez az új sor, ami megjeleníti az alert-et.
 
       // Az alábbi sorok tárolják az adatokat a localStorage-ban.

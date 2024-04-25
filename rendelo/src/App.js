@@ -16,14 +16,14 @@ function App() {
     <div className="App">
      <ShopContextProvider>
         <Router>
-          <Navbar />
+          <Navbar/>
           <Routes>
-            <Route path="/fooldal" element={<><Fooldal /><FooterContainer /></>} />
-            <Route path= "/shop" element={<><Shop /><FooterContainer /></>} />
-            <Route path="/cart" element={<><Cart /><FooterContainer /></>} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/kapcsolat" element={<><Kapcsolat /><FooterContainer /></>} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/fooldal" element={<><Fooldal/><FooterContainer/></>} />
+            <Route path= "/shop" element={<><Shop/><FooterContainer/></>} />
+            <Route path="/cart" element={<><Cart/><FooterContainer/></>} />
+            <Route path="/signup" element={<Signup/>} />
+            <Route path="/kapcsolat" element={<><Kapcsolat/><FooterContainer/></>} />
+            <Route path="/login" element={<Login/>} />
           </Routes>
         </Router>
         </ShopContextProvider>
