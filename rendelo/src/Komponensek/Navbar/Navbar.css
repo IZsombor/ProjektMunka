@@ -51,6 +51,27 @@
     margin-right: 60px; 
 }
 
+.nav-logout{
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    margin-right: 60px; 
+}
+
+.nav-logout button{
+    width: 157px; 
+    height: 50px;
+    outline: none;
+    border:2px solid #260de3;
+    border-radius: 55px;
+    color: #515151;
+    font-size: 20px;
+    font-weight: 500;
+    background:white ;
+    cursor: pointer;
+}
+
+
 .nav-signup button{
     width: 157px; 
     height: 50px;

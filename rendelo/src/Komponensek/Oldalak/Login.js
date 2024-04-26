@@ -1,60 +1,74 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './CSS/Login.css';
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 
 import user_icon from '../forrasok/person.png';
 import password_icon from '../forrasok/password.png';
 
-const Login = () => {
+const Login = () =>
+{
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  
+
   const [token, setToken] = useState('');
-  
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Új állapot a bejelentkezés nyomon követésére
 
   const [isVisible, setIsVisible] = useState(true);
- 
-
-  
 
   const ref = useRef(null);
 
-  useEffect(() => {
+  useEffect(() =>
+  {
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
+    return () =>
+    {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
-  const handleClickOutside = (event) => {
-    if (ref.current && !ref.current.contains(event.target)) {
+  const handleClickOutside = (event) =>
+  {
+    if (ref.current && !ref.current.contains(event.target))
+    {
       setIsVisible(false);
     }
   };
 
-  const handleLogin = async() => {
-    try {
+  const handleLogin = async () =>
+  {
+    try
+    {
       const response = await axios.post('https://localhost:7256/auth/login', { userName, password }, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
       setToken(response.data.token);
-     
-      if (localStorage.getItem('user') === userName && localStorage.getItem('pwd') === password) {
+
+      if (!localStorage.getItem('token'))
+      {
         alert('Sikeres bejelentkezés!');
-      } else {
+        localStorage.setItem("token", response.data.token)
+        localStorage.setItem("user", jwtDecode(localStorage.getItem("token")).name[0]);
+        setIsLoggedIn(true); // Beállítjuk az isLoggedIn állapotot igazra
+      } else
+      {
         alert('Először regisztrálnod kell!');
+        localStorage.removeItem("user")
       }
-    } catch (error) {
+    } catch (error)
+    {
       console.error('Bejelentkezési hiba:', error);
-      if (error.response) {
+      if (error.response)
+      {
         console.error('Hiba válasz:', error.response);
       }
     }
   };
 
-  if (!isVisible) {
+  if (!isVisible)
+  {
     return null;
   }
 
@@ -70,15 +84,15 @@ const Login = () => {
           <div className='input-container'>
             <div className='input1'>
               <img src={user_icon} alt='' />
-              <input type='text' placeholder='Nev' value={userName} onChange={(e) => setUserName(e.target.value)}/>
+              <input type='text' placeholder='Nev' value={userName} onChange={(e) => setUserName(e.target.value)} />
             </div>
-           
+
           </div>
           <br></br>
           <div className='input-container'>
             <div className='input1'>
               <img src={password_icon} alt='' />
-              <input type='password' placeholder='Jelszo' value={password} onChange={(e) => setPassword(e.target.value)}/>
+              <input type='password' placeholder='Jelszo' value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
           </div>
           <div className='elfelejtett-jelszo1'>Elfelejtett jelszó? <span>Kattints ide!</span> </div>
@@ -87,9 +101,9 @@ const Login = () => {
           </div>
         </div>
       </div>
+      {isLoggedIn && <div className='navbar'>Bejelentkezett!</div>} {/* Ha a felhasználó bejelentkezett, megjelenítjük a feliratot */}
     </div>
   );
 }
 
 export default Login;
-

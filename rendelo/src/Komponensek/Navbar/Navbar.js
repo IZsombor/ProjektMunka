@@ -1,4 +1,3 @@
-
 import React, { useState  } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,15 +8,15 @@ import './Navbar.css';
 
 const Navbar = () => {
   const [menu, setMenu] = useState("");
-  
- 
- 
   const navigate = useNavigate();
 
   const handleMenuClick = (menuName, path) => {
     setMenu(menuName);
     navigate(path);
   };
+
+  const isLoggedIn = !!localStorage.getItem('user');
+
 
    return (
     <div className="navbar" style={{position: 'fixed', width: '100%'}}>
@@ -45,6 +44,7 @@ const Navbar = () => {
         Regisztráció
         </button> 
       </div>
+
       <div className='nav-login'>
       <button onClick={() => handleMenuClick("Bejelentkezés", '/login')}>
         Bejelentkezés
@@ -53,7 +53,16 @@ const Navbar = () => {
         <div className='Cart' style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
     <Link style={{ textDecoration: 'none', color: 'black', fontSize: '20px' }} to='/cart'><b>Rendelés</b> <FontAwesomeIcon icon={faTruck} size="1x" color='#260de3' /></Link>
 </div>
+
       </div>
+      {isLoggedIn && (
+        <div className='nav-logout'>
+          <button onClick={() => handleMenuClick("Kijelentkezés", '/logout')}>
+            Kijelentkezés
+          </button>   
+    </div>
+  
+        )}
     </div>
   );
 };

@@ -6,6 +6,7 @@ import Fooldal from "./Komponensek/Oldalak/Fooldal";
 import Signup from "./Komponensek/Oldalak/Signup";
 import Kapcsolat from "./Komponensek/Oldalak/Kapcsolat";
 import Login from "./Komponensek/Oldalak/Login";
+import Logout from "./Komponensek/Oldalak/Logout";
 import {ShopContextProvider} from "./context/shop-context";
 import  Shop from './Komponensek/Oldalak/shop';
 import Cart from './Komponensek/Oldalak/cart';
@@ -24,6 +25,7 @@ function App() {
             <Route path="/signup" element={<Signup/>} />
             <Route path="/kapcsolat" element={<><Kapcsolat/><FooterContainer/></>} />
             <Route path="/login" element={<Login/>} />
+            <Route path="/logout" element={<Logout/>} />
           </Routes>
         </Router>
         </ShopContextProvider>

@@ -9,6 +9,7 @@ import password_icon from '../forrasok/password.png';
 const Signup = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+ 
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
   const [age, setAge] = useState(0);
@@ -37,7 +38,7 @@ const Signup = () => {
 
       // Az alábbi sorok tárolják az adatokat a localStorage-ban.
       localStorage.setItem('user', userName);
-      localStorage.setItem('pwd', password);
+     
     
     } catch (error) {
    
