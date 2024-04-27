@@ -1,12 +1,12 @@
 
 import './CSS/Fooldal.css';
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // useNavigate hook importálása
+import { useNavigate } from 'react-router-dom'; 
 
 const Fooldal = () => {
-  const navigate = useNavigate(); // useNavigate hook inicializálása
+  const navigate = useNavigate(); 
 
-  // handleClick függvény létrehozása, amely navigál az adott útvonalra
+
   const handleClick = (path) => {
     navigate(path);
   };

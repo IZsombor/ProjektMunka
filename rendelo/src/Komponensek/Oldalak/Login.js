@@ -12,7 +12,7 @@ const Login = () =>
   const [password, setPassword] = useState("");
 
   const [token, setToken] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Új állapot a bejelentkezés nyomon követésére
+  const [isLoggedIn, setIsLoggedIn] = useState(false); 
 
   const [isVisible, setIsVisible] = useState(true);
 
@@ -51,7 +51,7 @@ const Login = () =>
         alert('Sikeres bejelentkezés!');
         localStorage.setItem("token", response.data.token)
         localStorage.setItem("user", jwtDecode(localStorage.getItem("token")).name[0]);
-        setIsLoggedIn(true); // Beállítjuk az isLoggedIn állapotot igazra
+        setIsLoggedIn(true); 
       } else
       {
         alert('Először regisztrálnod kell!');
@@ -101,7 +101,7 @@ const Login = () =>
           </div>
         </div>
       </div>
-      {isLoggedIn && <div className='navbar'>Bejelentkezett!</div>} {/* Ha a felhasználó bejelentkezett, megjelenítjük a feliratot */}
+      {isLoggedIn && <div className='navbar'>Bejelentkezett!</div>} 
     </div>
   );
 }

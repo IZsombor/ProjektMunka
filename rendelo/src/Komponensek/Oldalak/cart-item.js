@@ -1,10 +1,21 @@
 import React, { useContext } from "react";
+import axios from 'axios';
 import { ShopContext } from "../../context/shop-context";
 
 export const CartItem = (props) => {
   const { id, productName, price, productImage } = props.data;
   const { cartItems, addToCart, removeFromCart, updateCartItemCount } =
     useContext(ShopContext);
+
+  
+  const handleUpdateCartItemCount = async (newCount) => {
+    try {
+      await axios.put(`https://localhost:7208/foods/${id}`, { count: newCount });
+      updateCartItemCount(newCount, id);
+    } catch (error) {
+      console.error(`Hiba a kosárban lévő termékek számának frissítésekor azonosítóval ${id}`, error);
+    }
+  };
 
   return (
     <div className="cartItem">
@@ -18,7 +29,7 @@ export const CartItem = (props) => {
           <button onClick={() => removeFromCart(id)}> - </button>
           <input
             value={cartItems[id]}
-            onChange={(e) => updateCartItemCount(Number(e.target.value), id)}
+            onChange={(e) => handleUpdateCartItemCount(Number(e.target.value))}
           />
           <button onClick={() => addToCart(id)}> + </button>
         </div>
@@ -26,3 +37,4 @@ export const CartItem = (props) => {
     </div>
   );
 };
+
