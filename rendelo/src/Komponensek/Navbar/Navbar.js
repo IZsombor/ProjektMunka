@@ -51,7 +51,7 @@ const Navbar = () => {
         </button> 
      
         <div className='Cart' style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-    <Link style={{ textDecoration: 'none', color: 'black', fontSize: '20px' }} to='/cart'><b>Rendelés</b> <FontAwesomeIcon icon={faTruck} size="1x" color='#260de3' /></Link>
+    <Link style={{ textDecoration: 'none', color: 'black', fontSize: '20px' }} to='/cart'><b>Kosár</b> <FontAwesomeIcon icon={faTruck} size="1x" color='#260de3' /></Link>
 </div>
 
       </div>
