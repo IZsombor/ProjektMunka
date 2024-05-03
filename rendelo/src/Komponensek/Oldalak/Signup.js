@@ -6,10 +6,11 @@ import user_icon from '../forrasok/person.png';
 import email_icon from '../forrasok/email.png';
 import password_icon from '../forrasok/password.png';
 
-const Signup = () => {
+const Signup = () =>
+{
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
- 
+
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
   const [age, setAge] = useState(0);
@@ -17,38 +18,43 @@ const Signup = () => {
 
   const ref = useRef(null);
 
-  useEffect(() => {
+  useEffect(() =>
+  {
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
+    return () =>
+    {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
-  const handleClickOutside = (event) => {
-    if (ref.current && !ref.current.contains(event.target)) {
+  const handleClickOutside = (event) =>
+  {
+    if (ref.current && !ref.current.contains(event.target))
+    {
       setIsVisible(false);
     }
   };
 
-  const handleSignUp = async () => {
-    try {
+  const handleSignUp = async () =>
+  {
+    try
+    {
       const response = await axios.post('https://localhost:7256/auth/register', { userName, password, email, fullName, age });
       console.log(response.data);
-      alert("Sikeres regisztráció!"); 
+      alert("Sikeres regisztráció!");
 
-      
-      localStorage.setItem('user', userName);
-     
-    
-    } catch (error) {
-   
-      if (error.response) {
+    } catch (error)
+    {
+
+      if (error.response)
+      {
         console.error('Hiba válasz:', error.response);
       }
     }
   };
 
-  if (!isVisible) {
+  if (!isVisible)
+  {
     return null;
   }
 
@@ -64,35 +70,35 @@ const Signup = () => {
           <div className='input-container'>
             <div className='input2'>
               <img src={user_icon} alt='' />
-              <input type='text' placeholder='Felhasználónév' value={userName} onChange={(e) => setUserName(e.target.value)}/>
+              <input type='text' placeholder='Felhasználónév' value={userName} onChange={(e) => setUserName(e.target.value)} />
             </div>
           </div>
           <br></br>
           <div className='input-container'>
             <div className='input2'>
               <img src={password_icon} alt='' />
-              <input type='password' placeholder='Jelszó' value={password} onChange={(e) => setPassword(e.target.value)}/>
+              <input type='password' placeholder='Jelszó' value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
           </div>
           <br></br>
           <div className='input-container'>
             <div className='input2'>
               <img src={email_icon} alt='' />
-              <input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}/>
+              <input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
           </div>
           <br></br>
           <div className='input-container'>
             <div className='input2'>
               <img src={user_icon} alt='' />
-              <input type='text' placeholder='Teljes név' value={fullName} onChange={(e) => setFullName(e.target.value)}/>
+              <input type='text' placeholder='Teljes név' value={fullName} onChange={(e) => setFullName(e.target.value)} />
             </div>
           </div>
           <br></br>
           <div className='input-container'>
             <div className='input2'>
               <img src={user_icon} alt='' />
-              <input type='number' placeholder='Kor' value={age} onChange={(e) => setAge(parseInt(e.target.value))}/>
+              <input type='number' placeholder='Kor' value={age} onChange={(e) => setAge(parseInt(e.target.value))} />
             </div>
           </div>
 

@@ -1,21 +1,26 @@
 import React from 'react'
-import { PRODUCTS } from "../../products";
 import { Product } from "./product";
 import "./CSS/shop.css"
-const Shop = () => {
+import GetAllProduct from '../../hooks/getAllProduct';
+
+const Shop = () =>
+{
+
   return (
     <div className="shop">
-    <div className="shopTitle">
-      <h1>Étlap</h1>
-    </div>
 
-    <div className="products">
-      {PRODUCTS.map((product, index) => (
-        <Product key={index} data={product} />
-      ))}
+      <div className="shopTitle">
+        <h1>Étlap</h1>
+      </div>
+
+      <div className="products">
+        {GetAllProduct().foodElements.map((product) => (
+          <Product key={product.id} data={product} />
+        ))}
+      </div>
     </div>
-  </div>
   );
+
 };
 
 export default Shop
